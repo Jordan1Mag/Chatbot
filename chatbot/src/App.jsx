@@ -1,4 +1,4 @@
-import './App.css'
+import './css/App.css'
 import gptLogo from './assets/chatgpt.svg';
 import addBtn from './assets/add-30.png';
 import msgIcon from './assets/message.svg';
@@ -26,18 +26,21 @@ function App() {
   }, [messages]);
 
   const handleSend = () => {
-    const text = input;
+    if (input.trim() === '') return;
+
+    const userInput = input;
     setInput('');
     setMessages([
       ...messages,
-      { text, isBot: false }
+      { text: userInput, isBot: false }
     ]);
 
-    const res = generateRandomString();
+    const response = generateRandomString();
+
     setMessages([
       ...messages,
-      { text, isBot: false },
-      { text: res, isBot: true }
+      { text: userInput, isBot: false },
+      { text: response, isBot: true }
     ])
   };
 
@@ -51,22 +54,22 @@ function App() {
     <>
       <div className="App">
         <div className="sideBar">
-          <div className="upperSide">
-            <div className="upperSideTop"><img src={gptLogo} alt="Logo" className="logo" /><span className="brand">Chatbot</span></div>
+          <div className="upperSidebar">
+            <div className="upperSidebarTop"><img src={gptLogo} alt="Logo" className="logo" /><span className="brand">Chatbot</span></div>
             <button className="midBtn"><img src={addBtn} alt="new chat" className="addBtn" />New Chat</button>
-            <div className="upperSideBottom">
+            <div className="upperSidebarBottom">
               <button className="query"><img src={msgIcon} alt="Query" />What is Programming?</button>
               <button className="query"><img src={msgIcon} alt="Query" />How to use an API?</button>
             </div>
           </div>
-          <div className="lowerSide">
+          <div className="lowerSidebar">
             <div className="listItems"><img src={home} alt="Home" className="listItemsImg" />Home</div>
             <div className="listItems"><img src={saved} alt="Saved" className="listItemsImg" />Saved</div>
             <div className="listItems"><img src={rocket} alt="Upgrade" className="listItemsImg" />Upgrade</div>
           </div>
         </div>
         <div className="main">
-          <div className="chats">
+          <div className="chatMessages">
             {messages.map((message, i) =>
               <div key={i} className={message.isBot ? "chat bot" : "chat"}>
                 <img className="chatImg" src={message.isBot ? gptImgLogo : userIcon} alt="ChatGPT" /><p className="txt">{message.text}</p>
@@ -79,7 +82,6 @@ function App() {
               <input type="text" placeholder="Send a message" value={input} onKeyDown={handleEnter} onChange={(e => { setInput(e.target.value) })} />
               <button className="send" onClick={handleSend}><img src={sendBtn} alt="Send" /></button>
             </div>
-            <p>ChatGPT may produce inaccurate information about people, places, or facts. ChatGPT August 20 Version.</p>
           </div>
         </div>
       </div>

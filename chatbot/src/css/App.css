@@ -36,13 +36,13 @@ body {
   font-size: 3rem;
 }
 
-.upperSide {
+.upperSidebar {
   padding: 4rem;
   border-bottom: 1px solid rgb(100, 100, 100);
   height: 70%;
 }
 
-.upperSideTop {
+.upperSidebarTop {
   display: flex;
   align-items: center;
   margin-bottom: 5rem;
@@ -86,7 +86,7 @@ body {
   height: 2rem;
 }
 
-.lowerSide {
+.lowerSidebar {
   padding: 4rem
 }
 
@@ -119,12 +119,13 @@ body {
   margin-bottom: 0;
 }
 
-.chats {
+.chatMessages {
   overflow: hidden;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
   width: 100%;
-  max-width: 70rem;
+  max-width: 100rem;
   height: calc(100vh - 17rem);
 }
 
@@ -151,7 +152,7 @@ body {
 }
 
 .chatFooter {
-  margin-top: auto;
+  margin-top: 2.25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -172,7 +173,7 @@ body {
   width: calc(100% - 3rem);
   outline: none;
   padding: 1.25rem;
-  color: w;
+  color: white;
 }
 
 .inp>input, .send {
